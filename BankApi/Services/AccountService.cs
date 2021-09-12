@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BankApi.Services
@@ -20,7 +21,10 @@ namespace BankApi.Services
         public async Task<decimal> GetBalanceAsync(string accountNumber)
         {
             var account = await _context.Accounts
-                .SingleAsync(x => x.Number == accountNumber);
+                .AsNoTracking()
+                //.Where(x => x.Number.GetHashCode() == accountNumber.GetHashCode())
+                .Where(x => EF.Functions.Collate(x.Number, "SQL_Latin1_General_CP1_CS_AS") == accountNumber)
+                .SingleAsync();
 
             return account.Balance;
         }
@@ -28,6 +32,8 @@ namespace BankApi.Services
         public async Task<IList<MoneyTransaction>> GetStatementAsync(string accountNumber)
         {
             var account = await _context.Accounts
+                .AsNoTracking()
+                .Include(x => x.Transactions)
                 .SingleAsync(x => x.Number == accountNumber);
 
             return account.Transactions;

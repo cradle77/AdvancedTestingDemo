@@ -4,6 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <Configurations>Debug;Release;DbTest</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbTest|AnyCPU'">
+    <DefineConstants>DBTEST</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

@@ -9,14 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Tests", "BankApi.Te
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DbTest|Any CPU = DbTest|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B605F1A-91F2-43B0-A441-F021C8D48E47}.DbTest|Any CPU.ActiveCfg = DbTest|Any CPU
+		{8B605F1A-91F2-43B0-A441-F021C8D48E47}.DbTest|Any CPU.Build.0 = DbTest|Any CPU
 		{8B605F1A-91F2-43B0-A441-F021C8D48E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B605F1A-91F2-43B0-A441-F021C8D48E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B605F1A-91F2-43B0-A441-F021C8D48E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B605F1A-91F2-43B0-A441-F021C8D48E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E559BBAE-776B-4105-9B8B-1A3498F0433D}.DbTest|Any CPU.ActiveCfg = DbTest|Any CPU
+		{E559BBAE-776B-4105-9B8B-1A3498F0433D}.DbTest|Any CPU.Build.0 = DbTest|Any CPU
 		{E559BBAE-776B-4105-9B8B-1A3498F0433D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E559BBAE-776B-4105-9B8B-1A3498F0433D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E559BBAE-776B-4105-9B8B-1A3498F0433D}.Release|Any CPU.ActiveCfg = Release|Any CPU
