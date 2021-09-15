@@ -14,7 +14,7 @@ namespace BankApi.Tests.UnitTests
     public class AccountsControllerUnitTest
     {
         [Fact]
-        public async Task Accounts_WhenOwnerDifferent_Returns403()
+        public async Task Accounts_WhenDifferentOwner_Returns403()
         {
             var httpContext = new DefaultHttpContext() { User = new ClaimsPrincipal() };
             var balance = new AccountBalance() { Owner = "theOwner" };
