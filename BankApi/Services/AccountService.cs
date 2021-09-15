@@ -1,4 +1,5 @@
 ﻿using BankApi.Model;
+using BankApi.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,21 @@ namespace BankApi.Services
             _dateProvider = dateProvider ?? throw new ArgumentNullException(nameof(dateProvider));
         }
 
-        public async Task<decimal> GetBalanceAsync(string accountNumber)
+        public async Task<AccountBalance> GetBalanceAsync(string accountNumber)
         {
             var account = await _context.Accounts
                 .AsNoTracking()
                 //.Where(x => x.Number.GetHashCode() == accountNumber.GetHashCode())
                 .Where(x => EF.Functions.Collate(x.Number, "SQL_Latin1_General_CP1_CS_AS") == accountNumber)
+                .Select(x => new AccountBalance() 
+                {
+                    AccountNumber = x.Number,
+                    CurrentBalance = x.Balance,
+                    Owner = x.Owner
+                })
                 .SingleAsync();
 
-            return account.Balance;
+            return account;
         }
 
         public async Task<IList<MoneyTransaction>> GetStatementAsync(string accountNumber)

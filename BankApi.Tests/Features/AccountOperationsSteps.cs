@@ -96,9 +96,9 @@ namespace BankApi.Tests.Features
         [When(@"I check the account balance")]
         public async Task WhenICheckTheAccountBalance()
         {
-            var balance = await _service.GetBalanceAsync(_context.AccountNumber);
+            var result = await _service.GetBalanceAsync(_context.AccountNumber);
 
-            _context.CurrentBalance = balance;
+            _context.CurrentBalance = result.CurrentBalance;
         }
 
 
