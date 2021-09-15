@@ -19,7 +19,7 @@ namespace BankApi.Tests.Utils
                 {
                     configureOptions.Claims = new List<Claim>()
                     {
-                        new Claim("name", userName),
+                        new Claim(ClaimTypes.Name, userName),
                         new Claim(ClaimTypes.Email, "dummy")
                     };
 
