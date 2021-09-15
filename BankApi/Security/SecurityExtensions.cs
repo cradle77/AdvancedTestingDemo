@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BankApi.Security
 {
@@ -10,6 +11,8 @@ namespace BankApi.Security
             {
                 configure.AddPolicy("SameOwnerPolicy", c => c.AddRequirements(new SameOwnerRequirement()));
             });
+
+            services.AddSingleton<IAuthorizationHandler, AccountAuthorizationHandler>();
 
             return services;
         }
