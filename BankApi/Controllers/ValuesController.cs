@@ -8,7 +8,6 @@ namespace BankApi.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet]
-        [Authorize]
         public string Get()
         {
             return "test";
