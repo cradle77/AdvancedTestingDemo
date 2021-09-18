@@ -15,6 +15,7 @@ namespace BankApi.Controllers
             _tasks = tasks;
         }
 
+        [HttpPost]
         public async Task<IActionResult> SubmitExportRequest([FromQuery] string accountNumber)
         {
             await _tasks.QueueBackgroundWorkItemAsync(async (sp, token) => 

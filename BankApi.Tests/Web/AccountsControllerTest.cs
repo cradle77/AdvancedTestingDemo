@@ -4,8 +4,8 @@ using BankApi.Tests.Utils;
 using BankApi.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -79,11 +79,7 @@ namespace BankApi.Tests.Web
                     CurrentBalance = 100
                 });
 
-            var response = await client.GetAsync("/api/accounts/AC123/balance");
-
-            response.EnsureSuccessStatusCode();
-
-            var result = JsonConvert.DeserializeObject<AccountBalance>(await response.Content.ReadAsStringAsync());
+            var result = await client.GetFromJsonAsync<AccountBalance>("/api/accounts/AC123/balance");
 
             Assert.Equal("Marco", result.Owner);
             Assert.Equal(100, result.CurrentBalance);
