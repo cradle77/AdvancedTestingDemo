@@ -1,4 +1,5 @@
 ﻿using BankApi.Services;
+using BankApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,34 @@ namespace BankApi.Controllers
             var statement = await _accounts.GetStatementAsync(accountNumber);
 
             return new ObjectResult(statement) { StatusCode = StatusCodes.Status200OK };
+        }
+
+        [HttpPost("{accountNumber}/transactions/deposit")]
+        public async Task<IActionResult> DepositAsync(string accountNumber, [FromBody] TransactionViewModel transationDetails)
+        {
+            await _accounts.DepositAsync(accountNumber, transationDetails.Amount, transationDetails.Description);
+
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
+        }
+
+        [HttpPost("{accountNumber}/transactions/withdrawal")]
+        public async Task<IActionResult> WithdrawAsync(string accountNumber, [FromBody] TransactionViewModel transationDetails)
+        {
+            var user = _contextAccessor.HttpContext.User;
+
+            var result = await _accounts.GetBalanceAsync(accountNumber);
+
+            var authorizationResult = await _authorization
+                .AuthorizeAsync(user, result, "SameOwnerPolicy");
+
+            if (authorizationResult.Succeeded) 
+            {
+                await _accounts.WithdrawAsync(accountNumber, transationDetails.Amount, transationDetails.Description);
+
+                return new StatusCodeResult(StatusCodes.Status204NoContent);
+            }
+            else
+                return new ForbidResult();
         }
     }
 }
