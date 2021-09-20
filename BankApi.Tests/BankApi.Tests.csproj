@@ -39,8 +39,4 @@
     <ProjectReference Include="..\BankApi\BankApi.csproj" />
     <ProjectReference Include="..\DummyWebApp\DummyWebApp.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
 </Project>
