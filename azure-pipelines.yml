@@ -1,6 +1,11 @@
 pool:
   vmImage: 'windows-latest'
 
+trigger:
+  branches:
+    exclude:
+    - '*'
+
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
