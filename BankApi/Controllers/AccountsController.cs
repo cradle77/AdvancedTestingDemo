@@ -31,7 +31,15 @@ namespace BankApi.Controllers
         {
             var result = await _accounts.GetBalanceAsync(accountNumber);
 
-            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
+            var user = _contextAccessor.HttpContext.User;
+
+            var authorizationResult = await _authorization
+                .AuthorizeAsync(user, result, "SameOwnerPolicy");
+
+            if (authorizationResult.Succeeded)
+                return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
+            else
+                return new ForbidResult();
         }
 
         [HttpGet("{accountNumber}/statement")]

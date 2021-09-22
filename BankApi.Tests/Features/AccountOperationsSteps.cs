@@ -24,14 +24,24 @@ namespace BankApi.Tests.Features
             _context = context;
 
             var options = new DbContextOptionsBuilder<BankDbContext>()
+#if DBTEST
+                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;database=testBankApi;integrated security=SSPI")
+#else
                 .UseInMemoryDatabase("AccountOperations")
+#endif
                 .Options;
 
             _context.DbContext = new BankDbContext(options);
 
+#if DBTEST
+            _context.DbContext.Database.Migrate();
+            _context.DbContext.Database.ExecuteSqlRaw("delete from MoneyTransaction; delete from Accounts");
+#else
             _context.DbContext.Database.EnsureDeleted();
+#endif
 
             _dateProvider = new Mock<IDateProvider>();
+            //_dateProvider.Setup(x => x.Today).Returns(new DateTime(2021, 10, 1));
 
             _service = new AccountService(_context.DbContext, _dateProvider.Object);
         }

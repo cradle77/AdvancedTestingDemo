@@ -23,8 +23,8 @@ namespace BankApi.Services
         {
             var account = await _context.Accounts
                 .AsNoTracking()
-                .Where(x => x.Number.GetHashCode() == accountNumber.GetHashCode())
-                //.Where(x => EF.Functions.Collate(x.Number, "SQL_Latin1_General_CP1_CS_AS") == accountNumber)
+                //.Where(x => x.Number.GetHashCode() == accountNumber.GetHashCode())
+                .Where(x => EF.Functions.Collate(x.Number, "SQL_Latin1_General_CP1_CS_AS") == accountNumber)
                 .Select(x => new AccountBalance() 
                 {
                     AccountNumber = x.Number,

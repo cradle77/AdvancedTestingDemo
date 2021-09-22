@@ -12,7 +12,7 @@ namespace BankApi.Security
                 configure.AddPolicy("SameOwnerPolicy", c => c.AddRequirements(new SameOwnerRequirement()));
             });
 
-            services.AddSingleton<IAuthorizationHandler, AccountAuthorizationHandler>();
+            //services.AddSingleton<IAuthorizationHandler, AccountAuthorizationHandler>();
 
             return services;
         }
