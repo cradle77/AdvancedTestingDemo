@@ -11,7 +11,7 @@ using Xunit;
 
 namespace BankApi.Tests.Web
 {
-    public class AccountsControllerTest : WebTestBase
+    public class AccountControllerTest : WebTestBase
     {
         private Mock<IAccountService> _accountService;
 
@@ -24,42 +24,6 @@ namespace BankApi.Tests.Web
             _accountService = new Mock<IAccountService>();
 
             services.AddSingleton<IAccountService>(_accountService.Object);
-        }
-
-        [Fact]
-        public async Task Accounts_WhenUserNotAuthenticated_Returns401()
-        {
-            var client = this.BuildWebApplicationFactory(
-                configServices:services => 
-                {
-                    services.ConfigureAnonymousUser();
-                })
-                .CreateClient();
-
-            var response = await client.GetAsync("/api/accounts/AC123/balance");
-
-            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task Accounts_WhenUserIsDifferent_Returns403()
-        {
-            var client = this.BuildWebApplicationFactory(
-                configServices: services =>
-                {
-                    services.ConfigureAuthenticatedUser(userName: "Marco");
-                })
-                .CreateClient();
-
-            _accountService.Setup(x => x.GetBalanceAsync(It.IsAny<string>()))
-                .ReturnsAsync(new AccountBalance() 
-                {
-                    Owner = "Jason"
-                });
-
-            var response = await client.GetAsync("/api/accounts/AC123/balance");
-
-            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
         }
 
         [Fact]
@@ -83,6 +47,42 @@ namespace BankApi.Tests.Web
 
             Assert.Equal("Marco", result.Owner);
             Assert.Equal(100, result.CurrentBalance);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserIsDifferent_Returns403()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =>
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x => x.GetBalanceAsync(It.IsAny<string>()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Jason"
+                });
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserNotAuthenticated_Returns401()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =>
+                {
+                    services.ConfigureAnonymousUser();
+                })
+                .CreateClient();
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
     }
 }

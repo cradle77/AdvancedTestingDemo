@@ -1,16 +1,13 @@
 ﻿using BankApi.BackgroundTasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Xunit;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading;
 using Microsoft.AspNetCore.Http;
-using Xunit.Sdk;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Sdk;
 
 namespace BankApi.Tests.Web
 {
@@ -26,7 +23,7 @@ namespace BankApi.Tests.Web
                 {
                     services.AddBackgroundQueue();
                 },
-                configBuilder: app => 
+                configBuilder: app =>
                 {
                     app.Use(async (ctx, next) =>
                     {
@@ -51,7 +48,6 @@ namespace BankApi.Tests.Web
             if (syncAwaiter != await Task.WhenAny(syncAwaiter, Task.Delay(10000)))
             {
                 throw new XunitException("task not completed");
-
             }
         }
 

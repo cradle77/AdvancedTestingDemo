@@ -26,25 +26,25 @@ namespace BankApi.Tests.Web
 
             var creditCheckClient = this.BuildWebApplicationFactory(
                 configBuilder: app =>
-                 {
-                     app.Map($"/check/{username}", builder =>
-                     {
-                         builder.Use((ctx, next) =>
-                         {
-                             requestCount++;
+                {
+                    app.Map($"/check/{username}", builder =>
+                    {
+                        builder.Use((ctx, next) =>
+                        {
+                            requestCount++;
 
-                             ctx.Response.StatusCode = StatusCodes.Status200OK;
-                             ctx.Response.ContentType = "application/json";
-                             var resp = JsonConvert.SerializeObject(new CreditScoreResponse()
-                             {
-                                 Username = username,
-                                 Passed = true
-                             });
+                            ctx.Response.StatusCode = StatusCodes.Status200OK;
+                            ctx.Response.ContentType = "application/json";
+                            var resp = JsonConvert.SerializeObject(new CreditScoreResponse()
+                            {
+                                Username = username,
+                                Passed = true
+                            });
 
-                             return ctx.Response.WriteAsync(resp);
-                         });
-                     });
-                 })
+                            return ctx.Response.WriteAsync(resp);
+                        });
+                    });
+                })
                 .CreateClient();
 
             var factory = new Mock<IHttpClientFactory>();
@@ -66,7 +66,7 @@ namespace BankApi.Tests.Web
 
             var response = await bankApiClient.PostAsync("api/loan", JsonContent.Create(new object()));
             response.EnsureSuccessStatusCode();
-            
+
             Assert.Equal(1, requestCount);
         }
 

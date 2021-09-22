@@ -13,7 +13,7 @@ namespace BankApi.Tests.Web
             return new WebApplicationFactory<DummyWebApp.Startup>()
                 .WithWebHostBuilder(config =>
                 {
-                    config.ConfigureServices(services => 
+                    config.ConfigureServices(services =>
                     {
                         this.ConfigureServices(services);
 

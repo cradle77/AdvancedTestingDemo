@@ -39,11 +39,4 @@
     <ProjectReference Include="..\BankApi\BankApi.csproj" />
     <ProjectReference Include="..\DummyWebApp\DummyWebApp.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\AccountOperations.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
 </Project>
