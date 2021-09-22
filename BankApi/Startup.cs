@@ -44,6 +44,7 @@ namespace BankApi
 
             services.AddTransient<IAccountService, AccountService>();
             services.AddSingleton<IDateProvider, DateProvider>();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +52,7 @@ namespace BankApi
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BankApi v1"));
             }

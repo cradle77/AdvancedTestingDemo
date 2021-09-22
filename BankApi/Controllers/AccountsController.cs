@@ -23,20 +23,15 @@ namespace BankApi.Controllers
             _contextAccessor = contextAccessor ?? throw new System.ArgumentNullException(nameof(contextAccessor));
         }
 
+        // to call it, get a token via:
+        // az account get-access-token --resource api://advancedtestdemo/bankapi
+
         [HttpGet("{accountNumber}/balance")]
         public async Task<IActionResult> GetBalanceAsync(string accountNumber)
         {
             var result = await _accounts.GetBalanceAsync(accountNumber);
 
-            var user = _contextAccessor.HttpContext.User;
-
-            var authorizationResult = await _authorization
-                .AuthorizeAsync(user, result, "SameOwnerPolicy");
-
-            if (authorizationResult.Succeeded)
-                return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
-            else
-                return new ForbidResult();
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
         }
 
         [HttpGet("{accountNumber}/statement")]
