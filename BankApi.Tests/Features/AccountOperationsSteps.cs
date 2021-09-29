@@ -14,6 +14,13 @@ namespace BankApi.Tests.Features
     [Binding]
     public class AccountOperationsSteps
     {
+        // try to call the service
+        /*
+           $token = az account get-access-token --resource api://advancedtestdemo/bankapi | ConvertFrom-Json
+           Invoke-WebRequest -Uri https://localhost:5001/api/Accounts/AC0001/balance `
+              -Headers @{ "Authorization" = "Bearer $($token.accessToken)"}
+        */
+
         private AccountOperationsContext _context;
 
         private AccountService _service;
