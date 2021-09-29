@@ -40,5 +40,34 @@ namespace BankApi.Tests.UnitTests
             Assert.IsType<ForbidResult>(result);
             authorizationService.Verify(x => x.AuthorizeAsync(httpContext.User, balance, "SameOwnerPolicy"), Times.Once);
         }
+
+        [Fact]
+        public async Task Accounts_WithSameOwner_Returns200()
+        {
+            var httpContext = new DefaultHttpContext() { User = new ClaimsPrincipal() };
+            var balance = new AccountBalance() { Owner = "theOwner", CurrentBalance = 100 };
+
+            var accountService = new Mock<IAccountService>();
+            accountService
+                .Setup(x => x.GetBalanceAsync(It.IsAny<string>()))
+                .ReturnsAsync(balance);
+
+            var httpContextAccessor = new Mock<IHttpContextAccessor>();
+            httpContextAccessor.Setup(x => x.HttpContext)
+                .Returns(httpContext);
+
+            var authorizationService = new Mock<IAuthorizationService>();
+            authorizationService
+                .Setup(x => x.AuthorizeAsync(httpContext.User, balance, "SameOwnerPolicy"))
+                .ReturnsAsync(AuthorizationResult.Success());
+
+            var controller = new AccountsController(accountService.Object, authorizationService.Object, httpContextAccessor.Object);
+
+            var result = await controller.GetBalanceAsync("123") as ObjectResult;
+
+            Assert.NotNull(result);
+            var returnedBalance = result.Value as AccountBalance;
+            Assert.Equal(balance.CurrentBalance, returnedBalance?.CurrentBalance);
+        }
     }
 }
