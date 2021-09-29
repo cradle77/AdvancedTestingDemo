@@ -1,0 +1,689 @@
+<UserSettings><ApplicationIdentity version="16.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.Name">1 - Specflow</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">false</PropertyValue><PropertyValue name="Tab0.RecordType">1</PropertyValue><PropertyValue name="Tab0.Position">54</PropertyValue><PropertyValue name="Tab0.OriginalName">1 - Specflow</PropertyValue><PropertyValue name="Tab1.Name">2 - DbTest</PropertyValue><PropertyValue name="Tab1.View">0</PropertyValue><PropertyValue name="Tab1.UseDefaultName">false</PropertyValue><PropertyValue name="Tab1.RecordType">1</PropertyValue><PropertyValue name="Tab1.Position">55</PropertyValue><PropertyValue name="Tab1.OriginalName">2 - DbTest</PropertyValue><PropertyValue name="Tab2.Name">3 - Controller</PropertyValue><PropertyValue name="Tab2.View">0</PropertyValue><PropertyValue name="Tab2.UseDefaultName">false</PropertyValue><PropertyValue name="Tab2.RecordType">1</PropertyValue><PropertyValue name="Tab2.Position">56</PropertyValue><PropertyValue name="Tab2.OriginalName">3 - Controller</PropertyValue><PropertyValue name="Tab3.Name">4 - AccountsControllerTest</PropertyValue><PropertyValue name="Tab3.View">0</PropertyValue><PropertyValue name="Tab3.UseDefaultName">false</PropertyValue><PropertyValue name="Tab3.RecordType">1</PropertyValue><PropertyValue name="Tab3.Position">57</PropertyValue><PropertyValue name="Tab3.OriginalName">4 - WebTest</PropertyValue><PropertyValue name="Tab4.Name">5 - End2End</PropertyValue><PropertyValue name="Tab4.View">0</PropertyValue><PropertyValue name="Tab4.UseDefaultName">false</PropertyValue><PropertyValue name="Tab4.RecordType">1</PropertyValue><PropertyValue name="Tab4.Position">58</PropertyValue><PropertyValue name="Tab4.OriginalName">5 - End2End</PropertyValue><PropertyValue name="TabCount">5</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">7C2A08D0FD1C1EA1F29367B945877C97</PropertyValue><PropertyValue name="Item0.Name">Text: Feature: Account operations
+	Tests account functionalities for Bank API</PropertyValue><PropertyValue name="Item0.UseDefaultName">true</PropertyValue><PropertyValue name="Item0.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item0.OriginalTab">1 - Specflow</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">Feature: Account operations
+	Tests account functionalities for Bank API</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">CED5C005219AB96C305E7231F3A47ADE</PropertyValue><PropertyValue name="Item1.Name">Text: Scenario: Check account balance
+	Given an account 'ACC0123' exists with a balance of 1000
+	When I check the account balance
+	Then the balance should be 1000</PropertyValue><PropertyValue name="Item1.UseDefaultName">true</PropertyValue><PropertyValue name="Item1.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item1.OriginalTabID">General</PropertyValue><PropertyValue name="Item1.OriginalTab">General</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">Scenario: Check account balance
+	Given an account 'ACC0123' exists with a balance of 1000
+	When I check the account balance
+	Then the balance should be 1000</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">F120390050619FD5A214E9E7CCB09F95</PropertyValue><PropertyValue name="Item2.Name">Text: private AccountOperationsContext _context;
+
+        private AccountService _service;
+        private Mock&lt;IDateProvider&gt; _dateProvider;
+
+        public AccountOperationsSteps(AccountOperationsContext context)
+        {
+            _context = context;
+
+            var options = new DbContextOptionsBuilder&lt;BankDbContext&gt;()
+                .UseInMemoryDatabase("AccountOperations")
+                .Options;
+
+            _context.DbContext = new BankDbContext(options);
+
+            _context.DbContext.Database.EnsureDeleted();
+
+            _dateProvider = new Mock&lt;IDateProvider&gt;();
+
+            _service = new AccountService(_context.DbContext, _dateProvider.Object);
+        }</PropertyValue><PropertyValue name="Item2.UseDefaultName">true</PropertyValue><PropertyValue name="Item2.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item2.OriginalTabID">General</PropertyValue><PropertyValue name="Item2.OriginalTab">General</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">private AccountOperationsContext _context;
+
+        private AccountService _service;
+        private Mock&lt;IDateProvider&gt; _dateProvider;
+
+        public AccountOperationsSteps(AccountOperationsContext context)
+        {
+            _context = context;
+
+            var options = new DbContextOptionsBuilder&lt;BankDbContext&gt;()
+                .UseInMemoryDatabase("AccountOperations")
+                .Options;
+
+            _context.DbContext = new BankDbContext(options);
+
+            _context.DbContext.Database.EnsureDeleted();
+
+            _dateProvider = new Mock&lt;IDateProvider&gt;();
+
+            _service = new AccountService(_context.DbContext, _dateProvider.Object);
+        }</PropertyValue><PropertyValue name="Item2.Position">3</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">F534B62DEB1DE045C9501EB7C13FD8A7</PropertyValue><PropertyValue name="Item3.Name">Text: _context.AccountNumber = accountNumber;
+
+            var account = new Account()
+            {
+                Balance = initialBalance,
+                Number = accountNumber
+            };
+
+            _context.DbContext.Accounts.Add(account);
+
+            await _context.DbContext.SaveChangesAsync();</PropertyValue><PropertyValue name="Item3.UseDefaultName">true</PropertyValue><PropertyValue name="Item3.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item3.OriginalTabID">General</PropertyValue><PropertyValue name="Item3.OriginalTab">General</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">_context.AccountNumber = accountNumber;
+
+            var account = new Account()
+            {
+                Balance = initialBalance,
+                Number = accountNumber
+            };
+
+            _context.DbContext.Accounts.Add(account);
+
+            await _context.DbContext.SaveChangesAsync();</PropertyValue><PropertyValue name="Item3.Position">4</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">6BADAF9A2183817A4292DBEBD7F52476</PropertyValue><PropertyValue name="Item4.Name">Text: var result = await _service.GetBalanceAsync(_context.AccountNumber);
+
+            _context.CurrentBalance = result.CurrentBalance;</PropertyValue><PropertyValue name="Item4.UseDefaultName">true</PropertyValue><PropertyValue name="Item4.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item4.OriginalTabID">General</PropertyValue><PropertyValue name="Item4.OriginalTab">General</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">var result = await _service.GetBalanceAsync(_context.AccountNumber);
+
+            _context.CurrentBalance = result.CurrentBalance;</PropertyValue><PropertyValue name="Item4.Position">5</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">D8561E53FFFB88278C4C61E69ED9AA62</PropertyValue><PropertyValue name="Item5.Name">Text: Assert.Equal(expectedBalance, _context.CurrentBalance);</PropertyValue><PropertyValue name="Item5.UseDefaultName">true</PropertyValue><PropertyValue name="Item5.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item5.OriginalTabID">General</PropertyValue><PropertyValue name="Item5.OriginalTab">General</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">Assert.Equal(expectedBalance, _context.CurrentBalance);</PropertyValue><PropertyValue name="Item5.Position">6</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">2020309C029FB6F7D68C6B3B921691AB</PropertyValue><PropertyValue name="Item6.Name">Text: await _service.DepositAsync(_context.AccountNumber, amount, "a deposit");</PropertyValue><PropertyValue name="Item6.UseDefaultName">true</PropertyValue><PropertyValue name="Item6.Tab">1 - Specflow</PropertyValue><PropertyValue name="Item6.OriginalTabID">General</PropertyValue><PropertyValue name="Item6.OriginalTab">General</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">await _service.DepositAsync(_context.AccountNumber, amount, "a deposit");</PropertyValue><PropertyValue name="Item6.Position">7</PropertyValue><PropertyValue name="Item7.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item7.ID">E8FC0BAFF738A5E75C8192DAEFF3423F</PropertyValue><PropertyValue name="Item7.Name">Text: public AccountOperationsSteps(AccountOperationsContext context)
+        {
+            _context = context;
+
+            var options = new DbContextOptionsBuilder&lt;BankDbContext&gt;()
+#if DBTEST
+                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;database=testBankApi;integrated security=SSPI")
+#else
+                .UseInMemoryDatabase("AccountOperations")
+#endif
+                .Options;
+
+            _context.DbContext = new BankDbContext(options);
+
+#if DBTEST
+            _context.DbContext.Database.Migrate();
+            _context.DbContext.Database.ExecuteSqlRaw("delete from MoneyTransaction; delete from Accounts");
+#else
+            _context.DbContext.Database.EnsureDeleted();
+#endif
+
+            _dateProvider = new Mock&lt;IDateProvider&gt;();
+            _dateProvider.Setup(x =&gt; x.Today).Returns(new DateTime(2021, 10, 1));
+
+            _service = new AccountService(_context.DbContext, _dateProvider.Object);
+        }</PropertyValue><PropertyValue name="Item7.UseDefaultName">true</PropertyValue><PropertyValue name="Item7.Tab">2 - DbTest</PropertyValue><PropertyValue name="Item7.OriginalTab">2 - DbTest</PropertyValue><PropertyValue name="Item7.RecordType">1</PropertyValue><PropertyValue name="Item7.Data">public AccountOperationsSteps(AccountOperationsContext context)
+        {
+            _context = context;
+
+            var options = new DbContextOptionsBuilder&lt;BankDbContext&gt;()
+#if DBTEST
+                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;database=testBankApi;integrated security=SSPI")
+#else
+                .UseInMemoryDatabase("AccountOperations")
+#endif
+                .Options;
+
+            _context.DbContext = new BankDbContext(options);
+
+#if DBTEST
+            _context.DbContext.Database.Migrate();
+            _context.DbContext.Database.ExecuteSqlRaw("delete from MoneyTransaction; delete from Accounts");
+#else
+            _context.DbContext.Database.EnsureDeleted();
+#endif
+
+            _dateProvider = new Mock&lt;IDateProvider&gt;();
+            _dateProvider.Setup(x =&gt; x.Today).Returns(new DateTime(2021, 10, 1));
+
+            _service = new AccountService(_context.DbContext, _dateProvider.Object);
+        }</PropertyValue><PropertyValue name="Item7.Position">1</PropertyValue><PropertyValue name="Item8.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item8.ID">FE9E48A36F37682931BC7557FA6B29CB</PropertyValue><PropertyValue name="Item8.Name">Text: [Fact]
+        public async Task ValuesController_WhenCalled_Returns200()
+        {
+            
+        }</PropertyValue><PropertyValue name="Item8.UseDefaultName">true</PropertyValue><PropertyValue name="Item8.Tab">3 - Controller</PropertyValue><PropertyValue name="Item8.OriginalTab">3 - Controller</PropertyValue><PropertyValue name="Item8.RecordType">1</PropertyValue><PropertyValue name="Item8.Data">[Fact]
+        public async Task ValuesController_WhenCalled_Returns200()
+        {
+            
+        }</PropertyValue><PropertyValue name="Item8.Position">1</PropertyValue><PropertyValue name="Item9.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item9.ID">3CE4830118E3324C860BDBDDC18E746C</PropertyValue><PropertyValue name="Item9.Name">Text: .WithWebHostBuilder(config =&gt;
+                {
+                    config.ConfigureServices(services =&gt;
+                    {
+                        var assembly = typeof(BankApi.Startup).Assembly;
+
+                        services.AddControllers().AddApplicationPart(assembly);
+                    });
+                });</PropertyValue><PropertyValue name="Item9.UseDefaultName">true</PropertyValue><PropertyValue name="Item9.Tab">3 - Controller</PropertyValue><PropertyValue name="Item9.OriginalTabID">General</PropertyValue><PropertyValue name="Item9.OriginalTab">General</PropertyValue><PropertyValue name="Item9.RecordType">1</PropertyValue><PropertyValue name="Item9.Data">.WithWebHostBuilder(config =&gt;
+                {
+                    config.ConfigureServices(services =&gt;
+                    {
+                        var assembly = typeof(BankApi.Startup).Assembly;
+
+                        services.AddControllers().AddApplicationPart(assembly);
+                    });
+                });</PropertyValue><PropertyValue name="Item9.Position">2</PropertyValue><PropertyValue name="Item10.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item10.ID">D53BA988505F2A6D586508CCD2F271B5</PropertyValue><PropertyValue name="Item10.Name">Text: [Fact]
+        public async Task ValuesController_WhenCalled_Returns200()
+        {
+            var factory = new WebApplicationFactory&lt;DummyWebApp.Startup&gt;()
+                .WithWebHostBuilder(config =&gt;
+                {
+                    config.ConfigureServices(services =&gt;
+                    {
+                        var assembly = typeof(BankApi.Startup).Assembly;
+
+                        services.AddControllers().AddApplicationPart(assembly);
+                    });
+                });
+
+            var client = factory.CreateClient();
+
+            var response = await client.GetAsync("/api/values");
+
+            response.EnsureSuccessStatusCode();
+        }</PropertyValue><PropertyValue name="Item10.UseDefaultName">true</PropertyValue><PropertyValue name="Item10.Tab">3 - Controller</PropertyValue><PropertyValue name="Item10.OriginalTabID">General</PropertyValue><PropertyValue name="Item10.OriginalTab">General</PropertyValue><PropertyValue name="Item10.RecordType">1</PropertyValue><PropertyValue name="Item10.Data">[Fact]
+        public async Task ValuesController_WhenCalled_Returns200()
+        {
+            var factory = new WebApplicationFactory&lt;DummyWebApp.Startup&gt;()
+                .WithWebHostBuilder(config =&gt;
+                {
+                    config.ConfigureServices(services =&gt;
+                    {
+                        var assembly = typeof(BankApi.Startup).Assembly;
+
+                        services.AddControllers().AddApplicationPart(assembly);
+                    });
+                });
+
+            var client = factory.CreateClient();
+
+            var response = await client.GetAsync("/api/values");
+
+            response.EnsureSuccessStatusCode();
+        }</PropertyValue><PropertyValue name="Item10.Position">3</PropertyValue><PropertyValue name="Item11.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item11.ID">B89E9ABA0EF3AA4EC75F181910849F11</PropertyValue><PropertyValue name="Item11.Name">Text: using BankApi.Security;
+using BankApi.Services;
+using BankApi.Tests.Utils;
+using BankApi.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using System.Net;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace BankApi.Tests.Web
+{
+    public class AccountControllerTest : WebTestBase
+    {
+        private Mock&lt;IAccountService&gt; _accountService;
+
+        protected override void ConfigureServices(IServiceCollection services)
+        {
+            base.ConfigureServices(services);
+
+            services.AddAccountSecurity();
+
+            _accountService = new Mock&lt;IAccountService&gt;();
+
+            services.AddSingleton&lt;IAccountService&gt;(_accountService.Object);
+        }
+
+        
+    }
+}</PropertyValue><PropertyValue name="Item11.UseDefaultName">true</PropertyValue><PropertyValue name="Item11.Tab">4 - WebTest</PropertyValue><PropertyValue name="Item11.OriginalTabID">General</PropertyValue><PropertyValue name="Item11.OriginalTab">General</PropertyValue><PropertyValue name="Item11.RecordType">1</PropertyValue><PropertyValue name="Item11.Data">using BankApi.Security;
+using BankApi.Services;
+using BankApi.Tests.Utils;
+using BankApi.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using System.Net;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace BankApi.Tests.Web
+{
+    public class AccountControllerTest : WebTestBase
+    {
+        private Mock&lt;IAccountService&gt; _accountService;
+
+        protected override void ConfigureServices(IServiceCollection services)
+        {
+            base.ConfigureServices(services);
+
+            services.AddAccountSecurity();
+
+            _accountService = new Mock&lt;IAccountService&gt;();
+
+            services.AddSingleton&lt;IAccountService&gt;(_accountService.Object);
+        }
+
+        
+    }
+}</PropertyValue><PropertyValue name="Item11.Position">1</PropertyValue><PropertyValue name="Item12.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item12.ID">81AEA6532E39A7FCC937717E4C4D1C39</PropertyValue><PropertyValue name="Item12.Name">Text: [Fact]
+        public async Task Accounts_WhenUserNotAuthenticated_Returns401()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    
+                })
+                .CreateClient();
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }</PropertyValue><PropertyValue name="Item12.UseDefaultName">true</PropertyValue><PropertyValue name="Item12.Tab">4 - WebTest</PropertyValue><PropertyValue name="Item12.OriginalTabID">General</PropertyValue><PropertyValue name="Item12.OriginalTab">General</PropertyValue><PropertyValue name="Item12.RecordType">1</PropertyValue><PropertyValue name="Item12.Data">[Fact]
+        public async Task Accounts_WhenUserNotAuthenticated_Returns401()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    
+                })
+                .CreateClient();
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }</PropertyValue><PropertyValue name="Item12.Position">2</PropertyValue><PropertyValue name="Item13.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item13.ID">878023735104192832EB55464B852839</PropertyValue><PropertyValue name="Item13.Name">Text: services.ConfigureAnonymousUser();</PropertyValue><PropertyValue name="Item13.UseDefaultName">true</PropertyValue><PropertyValue name="Item13.Tab">4 - WebTest</PropertyValue><PropertyValue name="Item13.OriginalTab">4 - AccountsControllerTest</PropertyValue><PropertyValue name="Item13.RecordType">1</PropertyValue><PropertyValue name="Item13.Data">services.ConfigureAnonymousUser();</PropertyValue><PropertyValue name="Item13.Position">3</PropertyValue><PropertyValue name="Item14.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item14.ID">A69D155338BA0D1B1B70E8E285F01F82</PropertyValue><PropertyValue name="Item14.Name">Text: [Fact]
+        public async Task Accounts_WhenUserIsCorrect_ReturnsBalance()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Marco",
+                    CurrentBalance = 100
+                });
+
+            var result = await client.GetFromJsonAsync&lt;AccountBalance&gt;("/api/accounts/AC123/balance");
+
+            Assert.Equal("Marco", result.Owner);
+            Assert.Equal(100, result.CurrentBalance);
+        }</PropertyValue><PropertyValue name="Item14.UseDefaultName">true</PropertyValue><PropertyValue name="Item14.Tab">4 - WebTest</PropertyValue><PropertyValue name="Item14.OriginalTabID">General</PropertyValue><PropertyValue name="Item14.OriginalTab">General</PropertyValue><PropertyValue name="Item14.RecordType">1</PropertyValue><PropertyValue name="Item14.Data">[Fact]
+        public async Task Accounts_WhenUserIsCorrect_ReturnsBalance()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Marco",
+                    CurrentBalance = 100
+                });
+
+            var result = await client.GetFromJsonAsync&lt;AccountBalance&gt;("/api/accounts/AC123/balance");
+
+            Assert.Equal("Marco", result.Owner);
+            Assert.Equal(100, result.CurrentBalance);
+        }</PropertyValue><PropertyValue name="Item14.Position">4</PropertyValue><PropertyValue name="Item15.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item15.ID">A28064C93B9FA721D3BD8338980349A7</PropertyValue><PropertyValue name="Item15.Name">Text: [Fact]
+        public async Task Accounts_WhenUserIsDifferent_Returns403()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Jason"
+                });
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }</PropertyValue><PropertyValue name="Item15.UseDefaultName">true</PropertyValue><PropertyValue name="Item15.Tab">4 - WebTest</PropertyValue><PropertyValue name="Item15.OriginalTabID">General</PropertyValue><PropertyValue name="Item15.OriginalTab">General</PropertyValue><PropertyValue name="Item15.RecordType">1</PropertyValue><PropertyValue name="Item15.Data">[Fact]
+        public async Task Accounts_WhenUserIsDifferent_Returns403()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Jason"
+                });
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }</PropertyValue><PropertyValue name="Item15.Position">5</PropertyValue><PropertyValue name="Item16.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item16.ID">614D4713733BE856410C3DA58029EF88</PropertyValue><PropertyValue name="Item16.Name">Text: using BankApi.Security;
+using BankApi.Services;
+using BankApi.Tests.Utils;
+using BankApi.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using System.Net;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace BankApi.Tests.Web
+{
+    public class AccountControllerTest : WebTestBase
+    {
+        private Mock&lt;IAccountService&gt; _accountService;
+
+        protected override void ConfigureServices(IServiceCollection services)
+        {
+            base.ConfigureServices(services);
+
+            services.AddAccountSecurity();
+
+            _accountService = new Mock&lt;IAccountService&gt;();
+
+            services.AddSingleton&lt;IAccountService&gt;(_accountService.Object);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserNotAuthenticated_Returns401()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAnonymousUser();
+                })
+                .CreateClient();
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserIsCorrect_ReturnsBalance()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Marco",
+                    CurrentBalance = 100
+                });
+
+            var result = await client.GetFromJsonAsync&lt;AccountBalance&gt;("/api/accounts/AC123/balance");
+
+            Assert.Equal("Marco", result.Owner);
+            Assert.Equal(100, result.CurrentBalance);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserIsDifferent_Returns403()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Jason"
+                });
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+    }
+}</PropertyValue><PropertyValue name="Item16.UseDefaultName">true</PropertyValue><PropertyValue name="Item16.Tab">4 - WebTest</PropertyValue><PropertyValue name="Item16.OriginalTab">4 - AccountsControllerTest</PropertyValue><PropertyValue name="Item16.RecordType">1</PropertyValue><PropertyValue name="Item16.Data">using BankApi.Security;
+using BankApi.Services;
+using BankApi.Tests.Utils;
+using BankApi.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using System.Net;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace BankApi.Tests.Web
+{
+    public class AccountControllerTest : WebTestBase
+    {
+        private Mock&lt;IAccountService&gt; _accountService;
+
+        protected override void ConfigureServices(IServiceCollection services)
+        {
+            base.ConfigureServices(services);
+
+            services.AddAccountSecurity();
+
+            _accountService = new Mock&lt;IAccountService&gt;();
+
+            services.AddSingleton&lt;IAccountService&gt;(_accountService.Object);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserNotAuthenticated_Returns401()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAnonymousUser();
+                })
+                .CreateClient();
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserIsCorrect_ReturnsBalance()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Marco",
+                    CurrentBalance = 100
+                });
+
+            var result = await client.GetFromJsonAsync&lt;AccountBalance&gt;("/api/accounts/AC123/balance");
+
+            Assert.Equal("Marco", result.Owner);
+            Assert.Equal(100, result.CurrentBalance);
+        }
+
+        [Fact]
+        public async Task Accounts_WhenUserIsDifferent_Returns403()
+        {
+            var client = this.BuildWebApplicationFactory(
+                configServices: services =&gt;
+                {
+                    services.ConfigureAuthenticatedUser(userName: "Marco");
+                })
+                .CreateClient();
+
+            _accountService.Setup(x =&gt; x.GetBalanceAsync(It.IsAny&lt;string&gt;()))
+                .ReturnsAsync(new AccountBalance()
+                {
+                    Owner = "Jason"
+                });
+
+            var response = await client.GetAsync("/api/accounts/AC123/balance");
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+    }
+}</PropertyValue><PropertyValue name="Item16.Position">6</PropertyValue><PropertyValue name="Item17.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item17.ID">D54E00C20862E40E9D958778AE8B4015</PropertyValue><PropertyValue name="Item17.Name">Text: [Fact]
+        public async Task CheckCreditScoreAsync_WhenTestPassed_ReturnsTrue()
+        {
+            string username = "marco";
+
+            var creditCheckClient = this.BuildWebApplicationFactory(
+                configBuilder: app =&gt;
+                {
+                    app.Map($"/check/{username}", builder =&gt;
+                    {
+                        builder.Use((ctx, next) =&gt;
+                        {
+                            ctx.Response.StatusCode = StatusCodes.Status200OK;
+                            ctx.Response.ContentType = "application/json";
+                            var resp = JsonConvert.SerializeObject(new CreditScoreResponse()
+                            {
+                                Username = username,
+                                Passed = true
+                            });
+
+                            return ctx.Response.WriteAsync(resp);
+                        });
+                    });
+                })
+                .CreateClient();
+
+            
+        }</PropertyValue><PropertyValue name="Item17.UseDefaultName">true</PropertyValue><PropertyValue name="Item17.Tab">5 - End2End</PropertyValue><PropertyValue name="Item17.OriginalTabID">General</PropertyValue><PropertyValue name="Item17.OriginalTab">General</PropertyValue><PropertyValue name="Item17.RecordType">1</PropertyValue><PropertyValue name="Item17.Data">[Fact]
+        public async Task CheckCreditScoreAsync_WhenTestPassed_ReturnsTrue()
+        {
+            string username = "marco";
+
+            var creditCheckClient = this.BuildWebApplicationFactory(
+                configBuilder: app =&gt;
+                {
+                    app.Map($"/check/{username}", builder =&gt;
+                    {
+                        builder.Use((ctx, next) =&gt;
+                        {
+                            ctx.Response.StatusCode = StatusCodes.Status200OK;
+                            ctx.Response.ContentType = "application/json";
+                            var resp = JsonConvert.SerializeObject(new CreditScoreResponse()
+                            {
+                                Username = username,
+                                Passed = true
+                            });
+
+                            return ctx.Response.WriteAsync(resp);
+                        });
+                    });
+                })
+                .CreateClient();
+
+            
+        }</PropertyValue><PropertyValue name="Item17.Position">1</PropertyValue><PropertyValue name="Item18.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item18.ID">81B8CB801C7673F70274C0F3F9CAC2D4</PropertyValue><PropertyValue name="Item18.Name">Text: var factory = new Mock&lt;IHttpClientFactory&gt;();
+            factory.Setup(x =&gt; x.CreateClient("CreditScoreWebService")).Returns(creditCheckClient);</PropertyValue><PropertyValue name="Item18.UseDefaultName">true</PropertyValue><PropertyValue name="Item18.Tab">5 - End2End</PropertyValue><PropertyValue name="Item18.OriginalTabID">General</PropertyValue><PropertyValue name="Item18.OriginalTab">General</PropertyValue><PropertyValue name="Item18.RecordType">1</PropertyValue><PropertyValue name="Item18.Data">var factory = new Mock&lt;IHttpClientFactory&gt;();
+            factory.Setup(x =&gt; x.CreateClient("CreditScoreWebService")).Returns(creditCheckClient);</PropertyValue><PropertyValue name="Item18.Position">2</PropertyValue><PropertyValue name="Item19.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item19.ID">2C19CB879229698393F1D4D5D379843E</PropertyValue><PropertyValue name="Item19.Name">Text: var service = new LoanService(factory.Object);
+
+            var result = await service.CheckCreditScoreAsync(username);
+
+            Assert.True(result);</PropertyValue><PropertyValue name="Item19.UseDefaultName">true</PropertyValue><PropertyValue name="Item19.Tab">5 - End2End</PropertyValue><PropertyValue name="Item19.OriginalTabID">General</PropertyValue><PropertyValue name="Item19.OriginalTab">General</PropertyValue><PropertyValue name="Item19.RecordType">1</PropertyValue><PropertyValue name="Item19.Data">var service = new LoanService(factory.Object);
+
+            var result = await service.CheckCreditScoreAsync(username);
+
+            Assert.True(result);</PropertyValue><PropertyValue name="Item19.Position">3</PropertyValue><PropertyValue name="Item20.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item20.ID">1154E3C850F3BA833436F4EFF6596B1F</PropertyValue><PropertyValue name="Item20.Name">Text: using BankApi.Services;
+using BankApi.ViewModels;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Moq;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace BankApi.Tests.Web
+{
+    public class LoanServiceTest : WebTestBase
+    {
+        [Fact]
+        public async Task CheckCreditScoreAsync_WhenTestPassed_ReturnsTrue()
+        {
+            string username = "marco";
+
+            var creditCheckClient = this.BuildWebApplicationFactory(
+                configBuilder: app =&gt;
+                {
+                    app.Map($"/check/{username}", builder =&gt;
+                    {
+                        builder.Use((ctx, next) =&gt;
+                        {
+                            ctx.Response.StatusCode = StatusCodes.Status200OK;
+                            ctx.Response.ContentType = "application/json";
+                            var resp = JsonConvert.SerializeObject(new CreditScoreResponse()
+                            {
+                                Username = username,
+                                Passed = true
+                            });
+
+                            return ctx.Response.WriteAsync(resp);
+                        });
+                    });
+                })
+                .CreateClient();
+            var factory = new Mock&lt;IHttpClientFactory&gt;();
+            factory.Setup(x =&gt; x.CreateClient("CreditScoreWebService")).Returns(creditCheckClient);
+
+            var service = new LoanService(factory.Object);
+
+            var result = await service.CheckCreditScoreAsync(username);
+
+            Assert.True(result);
+        }
+    }
+}
+</PropertyValue><PropertyValue name="Item20.UseDefaultName">true</PropertyValue><PropertyValue name="Item20.Tab">5 - End2End</PropertyValue><PropertyValue name="Item20.OriginalTab">5 - End2End</PropertyValue><PropertyValue name="Item20.RecordType">1</PropertyValue><PropertyValue name="Item20.Data">using BankApi.Services;
+using BankApi.ViewModels;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Moq;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace BankApi.Tests.Web
+{
+    public class LoanServiceTest : WebTestBase
+    {
+        [Fact]
+        public async Task CheckCreditScoreAsync_WhenTestPassed_ReturnsTrue()
+        {
+            string username = "marco";
+
+            var creditCheckClient = this.BuildWebApplicationFactory(
+                configBuilder: app =&gt;
+                {
+                    app.Map($"/check/{username}", builder =&gt;
+                    {
+                        builder.Use((ctx, next) =&gt;
+                        {
+                            ctx.Response.StatusCode = StatusCodes.Status200OK;
+                            ctx.Response.ContentType = "application/json";
+                            var resp = JsonConvert.SerializeObject(new CreditScoreResponse()
+                            {
+                                Username = username,
+                                Passed = true
+                            });
+
+                            return ctx.Response.WriteAsync(resp);
+                        });
+                    });
+                })
+                .CreateClient();
+            var factory = new Mock&lt;IHttpClientFactory&gt;();
+            factory.Setup(x =&gt; x.CreateClient("CreditScoreWebService")).Returns(creditCheckClient);
+
+            var service = new LoanService(factory.Object);
+
+            var result = await service.CheckCreditScoreAsync(username);
+
+            Assert.True(result);
+        }
+    }
+}
+</PropertyValue><PropertyValue name="Item20.Position">4</PropertyValue><PropertyValue name="ItemCount">21</PropertyValue></Category></Category></UserSettings>
