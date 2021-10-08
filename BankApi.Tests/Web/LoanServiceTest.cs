@@ -53,7 +53,7 @@ namespace BankApi.Tests.Web
 
             var service = new LoanService(factory.Object, contextAccessor.Object);
 
-            var result = await service.CheckCreditScoreAsync(username);
+            var result = await service.CheckCreditScoreAsync();
 
             Assert.True(result);
             Assert.Equal($"Bearer {token}", receivedHeader);
