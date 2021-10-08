@@ -20,7 +20,7 @@ namespace BankApi.Controllers
         [HttpPost]
         public async Task<IActionResult> OpenNewLoan()
         {
-            var canProceed = await _loans.CheckCreditScoreAsync(this.User.Identity.Name);
+            var canProceed = await _loans.CheckCreditScoreAsync();
 
             if (!canProceed)
             {

@@ -13,7 +13,7 @@ namespace BankApi.Services
 {
     public interface ILoanService
     {
-        public Task<bool> CheckCreditScoreAsync(string username);
+        public Task<bool> CheckCreditScoreAsync();
     }
 
     internal class LoanService : ILoanService
@@ -27,7 +27,7 @@ namespace BankApi.Services
             _contextAccessor = contextAccessor;
         }
 
-        public async Task<bool> CheckCreditScoreAsync(string username)
+        public async Task<bool> CheckCreditScoreAsync()
         {
             var accessToken = await _contextAccessor.HttpContext.GetTokenAsync("access_token");
 
