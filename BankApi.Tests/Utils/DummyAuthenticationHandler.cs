@@ -18,11 +18,11 @@ namespace BankApi.Tests.Utils
 
         protected async override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            this.Options.TokenValue = this.Context.Request.Headers[HeaderNames.Authorization]
+            var tokenValue = this.Context.Request.Headers[HeaderNames.Authorization]
                 .ToString()
                 .Replace("Bearer ", string.Empty);
 
-            return this.Options.GetResult();
+            return this.Options.GetResult(tokenValue);
         }
     }
 }

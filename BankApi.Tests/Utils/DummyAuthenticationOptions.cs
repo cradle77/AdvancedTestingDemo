@@ -11,7 +11,7 @@ namespace BankApi.Tests.Utils
 
         public string TokenValue { get; set; }
 
-        public AuthenticateResult GetResult()
+        public AuthenticateResult GetResult(string tokenValue)
         {
             if (this.Claims == null || !this.Claims.Any())
             {
@@ -23,7 +23,7 @@ namespace BankApi.Tests.Utils
             var principal = new ClaimsPrincipal(identity);
 
             var properties = new AuthenticationProperties();
-            properties.SetString(".Token.access_token", this.TokenValue);
+            properties.SetString(".Token.access_token", tokenValue ?? this.TokenValue);
 
             var ticket = new AuthenticationTicket(principal, properties, "dummy");
 
